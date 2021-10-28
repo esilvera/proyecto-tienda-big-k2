@@ -16,7 +16,7 @@ const Services = () => {
                         <div className="col-md-8 col-md-offset-2 text-center">
                             <div className="display-t">
                                 <div
-                                    className="display-tc animate-box"
+                                    className="display-tc "
                                     data-animate-effect="fadeIn"
                                 >
                                     <h1>BIG K2</h1>
@@ -32,7 +32,7 @@ const Services = () => {
                     <div className="row">
                         <div className="col-md-4 col-sm-4 text-center">
                             <div
-                                className="feature-center animate-box"
+                                className="feature-center "
                                 data-animate-effect="fadeIn"
                             >
                                 <span className="icon">
@@ -53,7 +53,7 @@ const Services = () => {
                         </div>
                         <div className="col-md-4 col-sm-4 text-center">
                             <div
-                                className="feature-center animate-box"
+                                className="feature-center "
                                 data-animate-effect="fadeIn"
                             >
                                 <span className="icon">
@@ -74,7 +74,7 @@ const Services = () => {
                         </div>
                         <div className="col-md-4 col-sm-4 text-center">
                             <div
-                                className="feature-center animate-box"
+                                className="feature-center "
                                 data-animate-effect="fadeIn"
                             >
                                 <span className="icon">
@@ -95,7 +95,7 @@ const Services = () => {
                         </div>
                         <div className="col-md-4 col-sm-4 text-center">
                             <div
-                                className="feature-center animate-box"
+                                className="feature-center "
                                 data-animate-effect="fadeIn"
                             >
                                 <span className="icon">
@@ -116,7 +116,7 @@ const Services = () => {
                         </div>
                         <div className="col-md-4 col-sm-4 text-center">
                             <div
-                                className="feature-center animate-box"
+                                className="feature-center "
                                 data-animate-effect="fadeIn"
                             >
                                 <span className="icon">
@@ -137,7 +137,7 @@ const Services = () => {
                         </div>
                         <div className="col-md-4 col-sm-4 text-center">
                             <div
-                                className="feature-center animate-box"
+                                className="feature-center "
                                 data-animate-effect="fadeIn"
                             >
                                 <span className="icon">

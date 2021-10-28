@@ -2,13 +2,13 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from "./views/Home";
 import Products from "./views/Products";
+import Detail from "./views/Detail";
 import About from "./views/About";
 import Services from "./views/Services";
 import Contact from "./views/Contact";
 import NotFound from "./views/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Detail from "./views/Detail";
 
 
 const App = () => {

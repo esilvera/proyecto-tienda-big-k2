@@ -16,7 +16,7 @@ const Products = () => {
                         <div className="col-md-8 col-md-offset-2 text-center">
                             <div className="display-t">
                                 <div
-                                    className="display-tc animate-box"
+                                    className="display-tc "
                                     data-animate-effect="fadeIn"
                                 >
                                     <h1>BIG K2</h1>
@@ -29,7 +29,7 @@ const Products = () => {
             </header>
             <div id="fh5co-product">
                 <div className="container">
-                    <div className="row animate-box">
+                    <div className="row ">
                         <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
                             <span>Cool Stuff</span>
                             <h2>Products.</h2>
@@ -40,7 +40,7 @@ const Products = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -65,7 +65,7 @@ const Products = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -90,7 +90,7 @@ const Products = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -117,7 +117,7 @@ const Products = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -142,7 +142,7 @@ const Products = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -167,7 +167,7 @@ const Products = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -194,7 +194,7 @@ const Products = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -219,7 +219,7 @@ const Products = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"
@@ -244,7 +244,7 @@ const Products = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 text-center animate-box">
+                        <div className="col-md-4 text-center ">
                             <div className="product">
                                 <div
                                     className="product-grid"

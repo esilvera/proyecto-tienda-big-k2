@@ -16,7 +16,7 @@ const About = () => {
                         <div className="col-md-8 col-md-offset-2 text-center">
                             <div className="display-t">
                                 <div
-                                    className="display-tc animate-box"
+                                    className="display-tc "
                                     data-animate-effect="fadeIn"
                                 >
                                     <h1>BIG K2</h1>
@@ -30,7 +30,7 @@ const About = () => {
             <div id="fh5co-about">
                 <div className="container">
                     <div className="about-content">
-                        <div className="row animate-box">
+                        <div className="row ">
                             <div className="col-md-6">
                                 <div className="desc">
                                     <h3>Company History</h3>
@@ -72,7 +72,7 @@ const About = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="row animate-box">
+                    <div className="row ">
                         <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
                             <span>Productive Staff</span>
                             <h2>Meet Our Team</h2>
@@ -84,7 +84,7 @@ const About = () => {
                     </div>
                     <div className="row">
                         <div
-                            className="col-md-4 col-sm-4 animate-box"
+                            className="col-md-4 col-sm-4 "
                             data-animate-effect="fadeIn"
                         >
                             <div className="fh5co-staff">
@@ -124,7 +124,7 @@ const About = () => {
                             </div>
                         </div>
                         <div
-                            className="col-md-4 col-sm-4 animate-box"
+                            className="col-md-4 col-sm-4 "
                             data-animate-effect="fadeIn"
                         >
                             <div className="fh5co-staff">
@@ -164,7 +164,7 @@ const About = () => {
                             </div>
                         </div>
                         <div
-                            className="col-md-4 col-sm-4 animate-box"
+                            className="col-md-4 col-sm-4 "
                             data-animate-effect="fadeIn"
                         >
                             <div className="fh5co-staff">

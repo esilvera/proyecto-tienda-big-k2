@@ -16,7 +16,7 @@ const Contact = () => {
                         <div className="col-md-8 col-md-offset-2 text-center">
                             <div className="display-t">
                                 <div
-                                    className="display-tc animate-box"
+                                    className="display-tc "
                                     data-animate-effect="fadeIn"
                                 >
                                     <h1>BIG K2</h1>
@@ -30,7 +30,7 @@ const Contact = () => {
             <div id="fh5co-contact">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-5 col-md-push-1 animate-box">
+                        <div className="col-md-5 col-md-push-1 ">
                             <div className="fh5co-contact-info">
                                 <h3>Contact Information</h3>
                                 <ul>
@@ -46,7 +46,7 @@ const Contact = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-md-6 animate-box">
+                        <div className="col-md-6 ">
                             <h3>Get In Touch</h3>
                             <form action="#">
                                 <div className="row form-group">
