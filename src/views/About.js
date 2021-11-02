@@ -66,7 +66,7 @@ const About = () => {
                             <div className="col-md-6">
                                 <img
                                     className="img-responsive"
-                                    src="images/img_bg_1.jpg"
+                                    src="images/Big K2.jpg"
                                     alt="about"
                                 />
                             </div>
@@ -89,7 +89,7 @@ const About = () => {
                         >
                             <div className="fh5co-staff">
                                 <img
-                                    src="images/person1.jpg"
+                                    src="images/Bill Gates.jpg"
                                     alt=""
                                 />
                                 <h3>Jean Smith</h3>
@@ -129,7 +129,7 @@ const About = () => {
                         >
                             <div className="fh5co-staff">
                                 <img
-                                    src="images/person2.jpg"
+                                    src="images/Steve Jobs.jpg"
                                     alt=""
                                 />
                                 <h3>Hush Raven</h3>
@@ -169,7 +169,7 @@ const About = () => {
                         >
                             <div className="fh5co-staff">
                                 <img
-                                    src="images/person3.jpg"
+                                    src="images/Lance Armstrong.jpg"
                                     alt=""
                                 />
                                 <h3>Alex King</h3>

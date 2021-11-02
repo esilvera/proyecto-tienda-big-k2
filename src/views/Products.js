@@ -58,7 +58,8 @@ const Products = () => {
                                     return (
                                         <div className="col-md-4 text-center" key={index}>
                                             <div className="product">
-                                                <div className="product-grid" style={{ backgroundImage: "url(`${path}${product_name}${extension}`)" }}>
+                                                {/* <div className="product-grid" style={{ backgroundImage: "url(`${path}${product_name}${extension}`)" }}> */}
+                                                <div className="product-grid" style={{ backgroundImage: `url("/${path}${product_name}${extension}")` }}>
                                                     <div className="inner">
                                                         <p>
                                                             <Link to="/detail" className="icon">

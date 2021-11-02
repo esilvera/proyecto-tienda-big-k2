@@ -26,6 +26,22 @@ const getState = ({ getStore, getActions, setStore }) => {
                         })
                     })
             }
+            /* postApiProducts: () => {
+                const { urlProducts } = getStore();
+                fetch(urlProducts, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setStore({
+                            products: data
+                        })
+                    })
+            } */
             /* addShoppingCard: (name) => {
                 const { list } = getStore();
                                 
