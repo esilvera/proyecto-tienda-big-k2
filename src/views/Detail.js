@@ -16,7 +16,7 @@ const Detail = () => {
                         <div className="col-md-8 col-md-offset-2 text-center">
                             <div className="display-t">
                                 <div
-                                    className="display-tc "
+                                    className="display-tc "  // animate-box
                                     data-animate-effect="fadeIn"
                                 >
                                     <h1>BIG K2</h1>
@@ -30,7 +30,7 @@ const Detail = () => {
             <div id="fh5co-product">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-10 col-md-offset-1 ">
+                        <div className="col-md-10 col-md-offset-1 ">  {/* animate-box */}
                             <div className="owl-carousel owl-carousel-fullwidth product-carousel">
                                 <div className="item">
                                     <div className="active text-center">
@@ -68,7 +68,7 @@ const Detail = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row ">
+                            <div className="row ">  {/* animate-box */}
                                 <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
                                     <h2>Hauteville Rocking Chair</h2>
                                     <p>
@@ -85,7 +85,7 @@ const Detail = () => {
                     </div>
                     <div className="row">
                         <div className="col-md-10 col-md-offset-1">
-                            <div className="fh5co-tabs ">
+                            <div className="fh5co-tabs animate-box">  {/* animate-box */}
                                 <ul className="fh5co-tab-nav">
                                     <li className="active">
                                        <Link to="#" data-tab={1}>

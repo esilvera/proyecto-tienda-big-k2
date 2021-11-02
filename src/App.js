@@ -9,6 +9,7 @@ import Contact from "./views/Contact";
 import NotFound from "./views/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import injectContext from './store/appContext';
 
 
 const App = () => {
@@ -29,4 +30,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default injectContext(App);
