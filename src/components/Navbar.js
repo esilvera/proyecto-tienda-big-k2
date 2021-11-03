@@ -25,6 +25,17 @@ const Navbar = () => {
                             <li>
                                 <Link to="/contact">Contact</Link>
                             </li>
+                            <li className="dropdown">
+                                <Link className="dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    to="#">
+                                    Maintenance
+                                </Link>
+                                <ul className="dropdown-menu">
+                                    <li><Link to="/register">Register</Link></li>
+                                    <li><Link to="/login">Login</Link></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <div className="col-md-3 col-xs-4 text-right hidden-xs menu-2">

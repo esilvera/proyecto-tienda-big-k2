@@ -6,6 +6,8 @@ import Detail from "./views/Detail";
 import About from "./views/About";
 import Services from "./views/Services";
 import Contact from "./views/Contact";
+import Login from "./views/Login";
+import Register from "./views/Register";
 import NotFound from "./views/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -18,6 +20,8 @@ const App = () => {
             <Navbar />
             <Switch>
                 <Route exact path="/detail" component={Detail}></Route>
+                <Route exact path="/login" component={Login}></Route>
+                <Route exact path="/register" component={Register}></Route>
                 <Route exact path="/contact" component={Contact}></Route>
                 <Route exact path="/services" component={Services}></Route>
                 <Route exact path="/about" component={About}></Route>

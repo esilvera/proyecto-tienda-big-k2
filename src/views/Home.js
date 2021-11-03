@@ -203,9 +203,10 @@ const Home = () => {
                                     </div>
                                 ) :
                                     !!products &&
+                                    /* colocar filter  */
                                     products.map((products, index) => {
                                         const { product_name, product_price, product_desc } = products;
-
+                                        console.log("index tiene: ", index)
                                         return (
                                             <div className="col-md-4 text-center" key={index}>
                                                 <div className="product">

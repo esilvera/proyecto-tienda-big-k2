@@ -35,35 +35,35 @@ const Detail = () => {
                                 <div className="item">
                                     <div className="active text-center">
                                         <figure>
-                                            <img src="images/product-single-1.jpg" alt="user" />
+                                            <img src="images/Casco Mtb.jpg" alt="user" />
                                         </figure>
                                     </div>
                                 </div>
                                 <div className="item">
                                     <div className="active text-center">
                                         <figure>
-                                            <img src="images/product-single-2.jpg" alt="user" />
+                                            <img src="images/Cambios Mtb.jpg" alt="user" />
                                         </figure>
                                     </div>
                                 </div>
                                 <div className="item">
                                     <div className="active text-center">
                                         <figure>
-                                            <img src="images/product-single-3.jpg" alt="user" />
+                                            <img src="images/Cauchos Mtb.jpg" alt="user" />
                                         </figure>
                                     </div>
                                 </div>
                                 <div className="item">
                                     <div className="active text-center">
                                         <figure>
-                                            <img src="images/product-single-4.jpg" alt="user" />
+                                            <img src="images/Maza Trasera.jpg" alt="user" />
                                         </figure>
                                     </div>
                                 </div>
                                 <div className="item">
                                     <div className="active text-center">
                                         <figure>
-                                            <img src="images/product-single-5.jpg" alt="user" />
+                                            <img src="images/Palanca Freno.jpg" alt="user" />
                                         </figure>
                                     </div>
                                 </div>
