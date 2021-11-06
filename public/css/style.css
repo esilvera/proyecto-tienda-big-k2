@@ -18,7 +18,9 @@ body {
   color: #828282;
   background: #fff;
 }
-
+span {
+  color: red;
+}
 #page {
   position: relative;
   overflow-x: hidden;

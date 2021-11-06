@@ -1,52 +1,45 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
 import { Context } from '../store/appContext';
 
 const Login = () => {
+
+    const { store: { email, password, error, huboError }, actions: { loginSubmit, handleChange } } = useContext(Context);
+
     return (
-        <>
-            <div id="fh5co-contact">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 ">
-                            <h3>Login</h3>
-                            <form action="#">
-                                <div className="row form-group">
-                                    <div className="col-md-12">
-                                        {/* <label for="email">Email</label> */}
-                                        <input
-                                            type="text"
-                                            id="email"
-                                            className="form-control"
-                                            placeholder="Your email"
-                                        />
-                                    </div>
+        <div id="fh5co-contact">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 ">
+                        <h3>Login</h3>
+                        <form onSubmit={loginSubmit} method='POST'>
+                            <div className="row form-group">
+                                <div className="col-md-12">
+                                    {/* <label for="email">Email</label> */}
+                                    <input type="text" className="form-control" id="email" name="email" value={email} placeholder="Your Email" onChange={handleChange} />
                                 </div>
-                                <div className="row form-group">
-                                    <div className="col-md-6">
-                                        {/* <label for="password">Password</label> */}
-                                        <input
-                                            type="text"
-                                            id="password"
-                                            className="form-control"
-                                            placeholder="Password"
-                                        />
-                                    </div>
+                            </div>
+                            <div className="row form-group">
+                                <div className="col-md-6">
+                                    {/* <label for="password">Password</label> */}
+                                    <input type="text" className="form-control" id="password" name="password" value={password} maxlength="20" placeholder="Password" onChange={handleChange} />
                                 </div>
-                                <div className="form-group">
-                                    <input
-                                        type="submit"
-                                        defaultValue="Send Message"
-                                        className="btn btn-primary"
-                                    />
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            {
+                                huboError ? (
+                                    <span>{error}</span>
+                                ) :
+                                    (
+                                        <span></span>
+                                    )
+                            }
+                            <div className="form-group">
+                                <button className="btn btn-primary" type="submit">Enviar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
-
 export default Login;
