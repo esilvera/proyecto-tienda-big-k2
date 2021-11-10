@@ -2,18 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
+const EditServices = () => {
 
-const AddServices = () => {
-
-    const { store: { service_name, service_desc, error, huboError }, actions: { addApiServices, handleChange } } = useContext(Context);
-
+    const { store: { service_name, service_desc, error, huboError }, actions: { putApiServices, handleChange } } = useContext(Context);
+    
     return (
         <div id="fh5co-contact">
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <h3>Add Services</h3>
-                        <form onSubmit={addApiServices} method='POST'>
+                        <h3>Edit Services</h3>
+                        <form onSubmit={putApiServices} method='POST'>
                             <div className="row form-group">
                                 <div className="col-md-6">
                                     <input type="text" className="form-control" id="service_name" name="service_name" value={service_name} maxlength="50" placeholder="Nombre del servicio" onChange={handleChange} />
@@ -54,4 +53,4 @@ const AddServices = () => {
         </div>
     )
 }
-export default AddServices;
+export default EditServices;

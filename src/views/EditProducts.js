@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
 
-const EditProducts = (evento) => {
+const EditProducts = () => {
 
-    const { store: { error, huboError }, actions: { editApiProducts, handleChange } } = useContext(Context);
-    const {prod_name, prod_desc, prod_brand, prod_price, prod_type_id} = evento;
-    console.log("evento tiene:  ", evento);
+    const { store: { prod_name, prod_desc, prod_brand, prod_price, prod_type_id, error, huboError }, actions: { putApiProducts, handleChange } } = useContext(Context);
 
     return (
         <div id="fh5co-contact">
@@ -15,7 +13,7 @@ const EditProducts = (evento) => {
                 <div className="row">
                     <div className="col-md-12">
                         <h3>Edit Products</h3>
-                        <form onSubmit={editApiProducts} method='POST'>
+                        <form onSubmit={putApiProducts} method='POST'>
                             <div className="row form-group">
                                 <div className="col-md-6">
                                     <input type="text" className="form-control" id="prod_name" name="prod_name" value={prod_name} maxlength="50" placeholder="Nombre del producto" onChange={handleChange} />

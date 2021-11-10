@@ -4,7 +4,7 @@ import { Context } from '../store/appContext';
 
 const TableServices = () => {
 
-    const { store: { services }, actions: { deleteApiServices } } = useContext(Context);
+    const { store: { services }, actions: { deleteApiServices, selectService } } = useContext(Context);
 
     return (
         <div className="row">
@@ -28,7 +28,7 @@ const TableServices = () => {
                     ) :
                         /* !!services && */
                         services.map((service, index) => {
-                            const { service_name, service_desc } = service;
+                            const { service_id, service_name, service_desc } = service;
 
                             return (
                                 <tbody>
@@ -37,9 +37,12 @@ const TableServices = () => {
                                         <td>{service_name}</td>
                                         <td>{service_desc}</td>
                                         <button>
-                                            {/* <i className="icon-pencil" */}
-                                                <Link to="/editservices evento={services}" className="icon-pencil"></Link>
-                                            {/* /> */}
+                                            <Link
+                                                onClick={() => {
+                                                    console.log("servicio seleccionado: ", service_id)
+                                                    selectService(service_id)
+                                                }} to="/editservices" className="icon-pencil">
+                                            </Link>
                                         </button>
                                         <button>
                                             <i className="icon-trash"

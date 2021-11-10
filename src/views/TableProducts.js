@@ -4,7 +4,7 @@ import { Context } from '../store/appContext';
 
 const TableProducts = () => {
 
-    const { store: { products }, actions: { deleteApiProducts } } = useContext(Context);
+    const { store: { products }, actions: { deleteApiProducts, selectProduct } } = useContext(Context);
 
     return (
         <div className="row">
@@ -31,7 +31,7 @@ const TableProducts = () => {
                     ) :
                         /* !!products && */
                         products.map((product, index) => {
-                            const { product_name, product_desc, product_brand, product_price, product_type_name } = product;
+                            const { product_id, product_name, product_desc, product_brand, product_price, product_type_name } = product;
 
                             return (
                                 <tbody>
@@ -43,9 +43,12 @@ const TableProducts = () => {
                                         <td>{product_price}</td>
                                         <td>{product_type_name}</td>
                                         <button>
-                                            {/* <i className="icon-pencil" */}
-                                                <Link to="/editproducts evento={product}" className="icon-pencil"></Link>
-                                            {/* /> */}
+                                            <Link
+                                                onClick={() => {
+                                                    console.log("producto seleccionado: ", product_id)
+                                                    selectProduct(product_id)
+                                                }} to="/editproducts" className="icon-pencil">
+                                            </Link>
                                         </button>
                                         <button>
                                             <i className="icon-trash"

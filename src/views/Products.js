@@ -4,7 +4,7 @@ import { Context } from '../store/appContext';
 
 const Products = () => {
 
-    const { store: { products, path, extension }, actions: { selectProduct, addShoppingCart, foundShopCart } } = useContext(Context);
+    const { store: { list, products, path, extension }, actions: { selectProduct, addShoppingCart, foundShopCart } } = useContext(Context);
 
     return (
         <>
@@ -52,7 +52,7 @@ const Products = () => {
                             ) :
                                 /* !!products && */
                                 products.map((product, index) => {
-                                    const { product_name } = product;
+                                    const { product_id, product_name } = product;
 
                                     return (
                                         <div className="col-md-4 text-center" key={index}>
@@ -63,14 +63,14 @@ const Products = () => {
                                                             <Link to="#" className="icon">
                                                                 <i className="icon-shopping-cart"
                                                                     onClick={() => {
-                                                                        addShoppingCart(product_name)
+                                                                        addShoppingCart(list, product_name)
                                                                     }}
                                                                 />
                                                             </Link>
                                                             <Link to="/detail" className="icon">
-                                                                <i className={"icon-"+"eye"}
+                                                                <i className={"icon-eye"}
                                                                     onClick={() => {
-                                                                        selectProduct(product)
+                                                                        selectProduct(product_id)
                                                                     }}
                                                                 />
                                                             </Link>

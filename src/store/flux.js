@@ -1,4 +1,5 @@
 import { findAllByLabelText } from "@testing-library/dom";
+import EditProducts from "../views/EditProducts";
 
 const getState = ({ getStore, getActions, setStore }) => {
     return {
@@ -13,11 +14,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             path: "images/",
             extension: ".jpg",
             list: [],
+            prod_id: "",
             prod_name: "",
             prod_desc: "",
             prod_brand: "",
             prod_price: 0,
             prod_type_id: 0,
+            service_id: "",
             service_name: "",
             service_desc: "",
             service_icon: "",
@@ -34,6 +37,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         },
         actions: {
+            clearProducts: () => {
+                setStore({
+                    prod_name: "",
+                    prod_desc: "",
+                    prod_brand: "",
+                    prod_price: 0,
+                    prod_type_id: 0,
+                    huboError: false,
+                })
+            },
             getApiProducts: () => {
                 const { urlProducts } = getStore();
                 fetch(urlProducts, {
@@ -44,7 +57,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 })
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log("data products tiene:", data)
                         setStore({
                             products: data
                         })
@@ -98,7 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
                 }
                 const { urlProducts } = getStore();
-                const { getApiProducts } = getActions();
+                const { getApiProducts, clearProducts } = getActions();
                 fetch(urlProducts, {
                     method: 'POST',
                     headers: {
@@ -116,24 +128,106 @@ const getState = ({ getStore, getActions, setStore }) => {
                             })
                             return
                         }
+                        clearProducts();
+                        getApiProducts();
+                    })
+            },
+            selectProduct: (product_id) => {
+                const { urlProducts } = getStore();
+                const { getApiProducts } = getActions();
+                fetch(urlProducts + "/" + product_id, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
                         setStore({
-                            prod_name: "",
-                            prod_desc: "",
-                            prod_brand: "",
-                            prod_price: 0,
-                            prod_type_id: 0,
-                            huboError: false,
+                            prod_id: data.product_id,
+                            prod_name: data.product_name,
+                            prod_desc: data.product_desc,
+                            prod_brand: data.product_brand,
+                            prod_price: data.product_price,
+                            prod_type_name: data.product_type_name,
                         })
-                        getApiProducts()
+                        getApiProducts();
+                    })
+            },
+            putApiProducts: (evento) => {
+                evento.preventDefault()
+                const { prod_id, prod_name, prod_desc, prod_brand, prod_price, prod_type_id, exregvalidatelong } = getStore();
+
+                if (prod_name === '' || !exregvalidatelong.test(prod_name)) {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque nombre del producto',
+                    })
+                    return
+                }
+                if (prod_brand === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque marca del producto',
+                    })
+                    return
+                }
+                if (prod_desc === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque descripción del producto',
+                    })
+                    return
+                }
+                if (prod_price === 0 || prod_price === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque precio del producto',
+                    })
+                    return
+                }
+                if (prod_type_id === 0 || prod_type_id === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor ID type del producto',
+                    })
+                    return
+                }
+                let register = {
+                    product_name: prod_name,
+                    product_desc: prod_desc,
+                    product_brand: prod_brand,
+                    product_price: prod_price,
+                    product_type_id: prod_type_id,
+
+                }
+                const { urlProducts } = getStore();
+                const { getApiProducts, clearProducts } = getActions();
+                fetch(urlProducts + "/" + prod_id, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(register)
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const { msg } = data;
+                        if (msg !== undefined) {
+                            setStore({
+                                huboError: true,
+                                error: msg,
+                            })
+                            return
+                        }
+                        clearProducts();
+                        getApiProducts();
                     })
             },
             deleteApiProducts: (evento) => {
-                console.log("products evento tiene: ", evento)
                 const { urlProducts } = getStore();
                 const { getApiProducts } = getActions();
                 const { product_id } = evento
-                console.log("variable tiene: ", evento.product_name)
-                console.log(urlProducts+"/"+product_id)
                 fetch(urlProducts + "/" + product_id, {
                     method: 'DELETE',
                     headers: {
@@ -142,13 +236,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 })
                     .then((response) => response.json())
                     .then((data) => {
-                        getApiProducts()
+                        getApiProducts();
                     })
-            },
-            selectProduct: (evento) => {
-                setStore({
-                    selected: evento.product_name
-                })
             },
             getApiServices: () => {
                 const { urlServices } = getStore();
@@ -160,7 +249,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 })
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log("data services tiene:", data)
                         setStore({
                             services: data
                         })
@@ -169,7 +257,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             addApiServices: (evento) => {
                 evento.preventDefault()
                 const { service_name, service_desc, service_icon, exregvalidatelong } = getStore();
-                console.log("evento en Services: ", evento.name)
                 if (service_name === '' || !exregvalidatelong.test(service_name)) {
                     setStore({
                         huboError: true,
@@ -216,12 +303,81 @@ const getState = ({ getStore, getActions, setStore }) => {
                         getApiServices()
                     })
             },
+            selectService: (service_id) => {
+                const { urlServices } = getStore();
+                const { getApiServices } = getActions();
+                fetch(urlServices + "/" + service_id, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setStore({
+                            service_id: data.service_id,
+                            service_name: data.service_name,
+                            service_desc: data.service_desc,
+                            service_icon: data.service_icon,
+                        })
+                        getApiServices()
+                    })
+            },
+            putApiServices: (evento) => {
+                evento.preventDefault()
+                const { service_id, service_name, service_desc, service_icon, exregvalidatelong } = getStore();
+
+                if (service_name === '' || !exregvalidatelong.test(service_name)) {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque nombre del servicio',
+                    })
+                    return
+                }
+                if (service_desc === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque descripción del servicio',
+                    })
+                    return
+                }
+                let register = {
+                    service_name: service_name,
+                    service_desc: service_desc,
+                    service_icon: service_icon,
+                }                
+                const { urlServices } = getStore();
+                const { getApiServices } = getActions();
+                fetch(urlServices + "/" + service_id, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(register)
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const { msg } = data;
+                        if (msg !== undefined) {
+                            setStore({
+                                huboError: true,
+                                error: msg,
+                            })
+                            return
+                        }
+                        setStore({
+                            service_name: "",
+                            service_desc: "",
+                            huboError: false,
+                        })
+                        getApiServices()
+                    })
+            },
             deleteApiServices: (evento) => {
-                console.log("service evento tiene: ", evento)
                 const { urlServices } = getStore();
                 const { getApiServices } = getActions();
                 const { service_id } = evento
-                console.log(urlServices+"/"+service_id)
+                console.log(urlServices + "/" + service_id)
                 fetch(urlServices + "/" + service_id, {
                     method: 'DELETE',
                     headers: {
@@ -235,11 +391,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             shoppingCart: (evento) => {
                 const { list } = getStore();
-                console.log("name product tiene: ", evento);
             },
             handleChange: evento => {
                 const { name, value } = evento.target;
-                console.log("name tiene: ", value)
                 setStore({
                     [name]: value
                 })
@@ -377,9 +531,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                 }
             },
-            addShoppingCart: (name) => {
-                const { list } = getStore();
-                console.log("name shopping cart tiene: ", name)
+            addShoppingCart: (list, name) => {
+                //const { list } = getStore();
+                console.log("list shopping card: ", list)
                 let newFavorite = {
                     id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
                     favorite: name
@@ -400,39 +554,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                     list: newList
                 })
             },
-
-            /* postApiProducts: () => {
-                const { urlProducts } = getStore();
-                fetch(urlProducts, {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'aplication/json',
-                    }
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        setStore({
-                            products: data
-                        })
-                    })
-            } */
-            /* addShoppingCard: (name) => {
-                const { list } = getStore();
-                                
-                const found = list.find(element => element.favorite === name);
-                if (found) return;
-                    let newFavorite = {
-                        id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
-                        favorite: name
-                    };
-                    let newList = [...list]; 
-                    newList.push(newFavorite);
-                    
-                    setStore({
-                        list: newList,
-                    })
-            },*/
         }
     }
 }

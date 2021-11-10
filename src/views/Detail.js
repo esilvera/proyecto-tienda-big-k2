@@ -4,8 +4,7 @@ import { Context } from '../store/appContext';
 
 const Detail = () => {
 
-    const { store: { selected, path, extension }, actions: { } } = useContext(Context);
-    console.log("selected tiene: ", selected)
+    const { store: { prod_name, prod_desc, prod_brand, prod_price, prod_type_id, path, extension }, actions: {  } } = useContext(Context);
 
     return (
 
@@ -18,14 +17,14 @@ const Detail = () => {
                                 <div className="item">
                                     <div className="active text-center">
                                         <figure>
-                                            <img src={`${path}${selected}${extension}`} alt="user" />
+                                            <img src={`${path}${prod_name}${extension}`} alt="user" />
                                         </figure>
                                     </div>
                                 </div>
                             {/* </div> */}
                             <div className="row ">  {/* animate-box */}
                                 <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                                    <h2>{selected}</h2>
+                                    <h2>{prod_name}</h2>
                                     <p>
                                         <Link to="#" className="btn btn-primary btn-outline btn-lg">
                                             Add to Cart
@@ -74,8 +73,8 @@ const Detail = () => {
                                         data-tab-content={1}
                                     >
                                         <div className="col-md-10 col-md-offset-1">
-                                            <span className="price">SRP: $350</span>
-                                            <h2>Hauteville Rocking Chair</h2>
+                                            <span className="price">$ {prod_price}</span>
+                                            <h2>{prod_name}</h2>
                                             <p>
                                                 Paragraph placeat quis fugiat provident veritatis quia iure
                                                 a debitis adipisci dignissimos consectetur magni quas eius
