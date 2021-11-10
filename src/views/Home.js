@@ -4,116 +4,13 @@ import { Context } from '../store/appContext';
 
 const Home = () => {
 
-    const { store: { products, path, extension, list }, actions: { } } = useContext(Context);
+    const { store: { products, path, extension, list }, actions: { selectProduct } } = useContext(Context);
 
     return (
         <>
-            <div className="fh5co-loader"></div>
-
-            <div id="page">
-                <aside id="fh5co-hero" className="js-fullheight">
-                    <div className="flexslider js-fullheight">
-                        <ul className="slides">
-                            <li style={{ backgroundImage: "url(images/img_bg_1.jpg)" }}>
-                                <div className="overlay-gradient" />
-                                <div className="container">
-                                    <div className="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
-                                        <div className="slider-text-inner">
-                                            <div className="desc">
-                                                <span className="price">$800</span>
-                                                <h2>Alato Cabinet</h2>
-                                                <p>
-                                                    Far far away, behind the word mountains, far from the
-                                                    countries Vokalia and Consonantia, there live the blind
-                                                    texts. Separated they live in Bookmarksgrove.
-                                                </p>
-                                                <p>
-                                                    <Link to="/detail"
-                                                        className="btn btn-primary btn-outline btn-lg"
-                                                    >
-                                                        Purchase Now
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style={{ backgroundImage: "url(images/img_bg_2.jpg)" }}>
-                                <div className="container">
-                                    <div className="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
-                                        <div className="slider-text-inner">
-                                            <div className="desc">
-                                                <span className="price">$530</span>
-                                                <h2>The Haluz Rocking Chair</h2>
-                                                <p>
-                                                    Far far away, behind the word mountains, far from the
-                                                    countries Vokalia and Consonantia, there live the blind
-                                                    texts. Separated they live in Bookmarksgrove.
-                                                </p>
-                                                <p>
-                                                    <Link to="/detail"
-                                                        className="btn btn-primary btn-outline btn-lg"
-                                                    >
-                                                        Purchase Now
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style={{ backgroundImage: "url(images/img_bg_3.jpg)" }}>
-                                <div className="container">
-                                    <div className="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
-                                        <div className="slider-text-inner">
-                                            <div className="desc">
-                                                <span className="price">$750</span>
-                                                <h2>Alato Cabinet</h2>
-                                                <p>
-                                                    Far far away, behind the word mountains, far from the
-                                                    countries Vokalia and Consonantia, there live the blind
-                                                    texts. Separated they live in Bookmarksgrove.
-                                                </p>
-                                                <p>
-                                                    <Link to="/detail"
-                                                        className="btn btn-primary btn-outline btn-lg"
-                                                    >
-                                                        Purchase Now
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style={{ backgroundImage: "url(images/img_bg_4.jpg)" }}>
-                                <div className="container">
-                                    <div className="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
-                                        <div className="slider-text-inner">
-                                            <div className="desc">
-                                                <span className="price">$540</span>
-                                                <h2>The WW Chair</h2>
-                                                <p>
-                                                    Far far away, behind the word mountains, far from the
-                                                    countries Vokalia and Consonantia, there live the blind
-                                                    texts. Separated they live in Bookmarksgrove.
-                                                </p>
-                                                <p>
-                                                    <Link to="/detail"
-                                                        className="btn btn-primary btn-outline btn-lg"
-                                                    >
-                                                        Purchase Now
-                                                    </Link>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
+            {/* <div className="fh5co-loader"></div> */}
+            {/* <div id="page"> */}
+                
                 <div id="fh5co-services" className="fh5co-bg-section">
                     <div className="container">
                         <div className="row">
@@ -202,10 +99,8 @@ const Home = () => {
                                         <span className="visually-hidden">Loading...</span>
                                     </div>
                                 ) :
-                                    !!products &&
-                                    /* colocar filter  */
-                                    products.map((products, index) => {
-                                        const { product_name, product_price, product_desc } = products;
+                                    products.filter((product, index) => index < 3).map((product, index) => {
+                                        const { product_name, product_price, product_desc } = product;
                                         console.log("index tiene: ", index)
                                         return (
                                             <div className="col-md-4 text-center" key={index}>
@@ -217,7 +112,11 @@ const Home = () => {
                                                                     <i className="icon-shopping-cart" />
                                                                 </Link>
                                                                 <Link to="/detail" className="icon">
-                                                                    <i className="icon-eye" />
+                                                                    <i className="icon-eye"
+                                                                        onClick={() => {
+                                                                            selectProduct(products)
+                                                                        }}
+                                                                    />
                                                                 </Link>
                                                             </p>
                                                         </div>
@@ -397,12 +296,13 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="gototop js-top">
-                <Link to="#" className="js-gotop">
-                    <i className="icon-arrow-up" />
-                </Link>
-            </div>
+                {/* </div> */}
+                <div className="gototop js-top">
+                    <Link to="#" className="js-gotop">
+                        <i className="icon-arrow-up" />
+                    </Link>
+                </div>
+            {/* </div> */}
         </>
 
     )

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Contact = () => {
     return (
         <>
-            <header
+            {/* <header
                 id="fh5co-header"
                 className="fh5co-cover fh5co-cover-sm"
                 role="banner"
@@ -26,7 +26,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-            </header>
+            </header> */}
             <div id="fh5co-contact">
                 <div className="container">
                     <div className="row">
@@ -35,10 +35,10 @@ const Contact = () => {
                                 <h3>Contact Information</h3>
                                 <ul>
                                     <li className="address">
-                                        198 West 21th Street, <br /> Suite 721 New York NY 10016
+                                       Lira 570, <br /> Suite 721 Santiago de Chile
                                     </li>
                                     <li className="phone">
-                                        <Link to="tel://1234567920">+ 1235 2355 98</Link>
+                                        <Link to="tel://1234567920">+ 56 9 35235598</Link>
                                     </li>
                                     <li className="email">
                                         <Link to="mailto:info@yoursite.com">info@yoursite.com</Link>

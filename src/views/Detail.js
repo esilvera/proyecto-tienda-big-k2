@@ -1,81 +1,36 @@
-import React from "react";
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { Context } from '../store/appContext';
 
 const Detail = () => {
+
+    const { store: { selected, path, extension }, actions: { } } = useContext(Context);
+    console.log("selected tiene: ", selected)
+
     return (
+
         <>
-            <header
-                id="fh5co-header"
-                className="fh5co-cover fh5co-cover-sm"
-                role="banner"
-                style={{ backgroundImage: "url(images/img_bg_2.jpg)" }}
-            >
-                <div className="overlay" />
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-8 col-md-offset-2 text-center">
-                            <div className="display-t">
-                                <div
-                                    className="display-tc "  // animate-box
-                                    data-animate-effect="fadeIn"
-                                >
-                                    <h1>BIG K2</h1>
-                                    <h3>Product Details</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
             <div id="fh5co-product">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-10 col-md-offset-1 ">  {/* animate-box */}
-                            <div className="owl-carousel owl-carousel-fullwidth product-carousel">
+                            {/* <div className="owl-carousel owl-carousel-fullwidth product-carousel"> */}
                                 <div className="item">
                                     <div className="active text-center">
                                         <figure>
-                                            <img src="images/Casco Mtb.jpg" alt="user" />
+                                            <img src={`${path}${selected}${extension}`} alt="user" />
                                         </figure>
                                     </div>
                                 </div>
-                                <div className="item">
-                                    <div className="active text-center">
-                                        <figure>
-                                            <img src="images/Cambios Mtb.jpg" alt="user" />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <div className="active text-center">
-                                        <figure>
-                                            <img src="images/Cauchos Mtb.jpg" alt="user" />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <div className="active text-center">
-                                        <figure>
-                                            <img src="images/Maza Trasera.jpg" alt="user" />
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <div className="active text-center">
-                                        <figure>
-                                            <img src="images/Palanca Freno.jpg" alt="user" />
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
+                            {/* </div> */}
                             <div className="row ">  {/* animate-box */}
                                 <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                                    <h2>Hauteville Rocking Chair</h2>
+                                    <h2>{selected}</h2>
                                     <p>
-                                       <Link to="#" className="btn btn-primary btn-outline btn-lg">
+                                        <Link to="#" className="btn btn-primary btn-outline btn-lg">
                                             Add to Cart
                                         </Link>
-                                       <Link to="#" className="btn btn-primary btn-outline btn-lg">
+                                        <Link to="#" className="btn btn-primary btn-outline btn-lg">
                                             Compare
                                         </Link>
                                     </p>
@@ -85,10 +40,10 @@ const Detail = () => {
                     </div>
                     <div className="row">
                         <div className="col-md-10 col-md-offset-1">
-                            <div className="fh5co-tabs animate-box">  {/* animate-box */}
+                            <div className="fh5co-tabs ">  {/* animate-box */}
                                 <ul className="fh5co-tab-nav">
                                     <li className="active">
-                                       <Link to="#" data-tab={1}>
+                                        <Link to="#" data-tab={1}>
                                             <span className="icon visible-xs">
                                                 <i className="icon-file" />
                                             </span>
@@ -96,7 +51,7 @@ const Detail = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                       <Link to="#" data-tab={2}>
+                                        <Link to="#" data-tab={2}>
                                             <span className="icon visible-xs">
                                                 <i className="icon-bar-graph" />
                                             </span>
@@ -104,7 +59,7 @@ const Detail = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                       <Link to="#" data-tab={3}>
+                                        <Link to="#" data-tab={3}>
                                             <span className="icon visible-xs">
                                                 <i className="icon-star" />
                                             </span>

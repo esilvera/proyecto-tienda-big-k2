@@ -15,7 +15,9 @@ const injectContext = PassedComponent => {
         }));
 
         useEffect(() => {
+            state.actions.checkDataUser();
             state.actions.getApiProducts();
+            state.actions.getApiServices();
         }, [])
 
         return (

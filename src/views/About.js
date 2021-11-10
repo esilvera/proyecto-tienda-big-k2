@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const About = () => {
     return (
         <>
-            <header
+            {/* <header
                 id="fh5co-header"
                 className="fh5co-cover fh5co-cover-sm"
                 role="banner"
@@ -26,7 +26,7 @@ const About = () => {
                         </div>
                     </div>
                 </div>
-            </header>
+            </header> */}
             <div id="fh5co-about">
                 <div className="container">
                     <div className="about-content">

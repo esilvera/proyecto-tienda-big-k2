@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 import { Context } from '../store/appContext';
 
 const Products = () => {
 
-    const { store: { products, path, extension, list }, actions: { } } = useContext(Context);
-    /* const [selected, setSelected] = useState(null); */
+    const { store: { products, path, extension }, actions: { selectProduct, addShoppingCart, foundShopCart } } = useContext(Context);
 
     return (
         <>
-            <header
+            {/* <header
                 id="fh5co-header"
                 className="fh5co-cover fh5co-cover-sm"
                 role="banner"
@@ -31,7 +30,7 @@ const Products = () => {
                         </div>
                     </div>
                 </div>
-            </header>
+            </header> */}
             <div id="fh5co-product">
                 <div className="container">
                     <div className="row ">
@@ -51,22 +50,29 @@ const Products = () => {
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
                             ) :
-                                !!products &&
-                                products.map((products, index) => {
-                                    const { product_name } = products;
+                                /* !!products && */
+                                products.map((product, index) => {
+                                    const { product_name } = product;
 
                                     return (
                                         <div className="col-md-4 text-center" key={index}>
                                             <div className="product">
-                                                {/* <div className="product-grid" style={{ backgroundImage: "url(`${path}${product_name}${extension}`)" }}> */}
                                                 <div className="product-grid" style={{ backgroundImage: `url("/${path}${product_name}${extension}")` }}>
                                                     <div className="inner">
                                                         <p>
-                                                            <Link to="/detail" className="icon">
-                                                                <i className="icon-shopping-cart" />
+                                                            <Link to="#" className="icon">
+                                                                <i className="icon-shopping-cart"
+                                                                    onClick={() => {
+                                                                        addShoppingCart(product_name)
+                                                                    }}
+                                                                />
                                                             </Link>
                                                             <Link to="/detail" className="icon">
-                                                                <i className="icon-eye" />
+                                                                <i className={"icon-"+"eye"}
+                                                                    onClick={() => {
+                                                                        selectProduct(product)
+                                                                    }}
+                                                                />
                                                             </Link>
                                                         </p>
                                                     </div>

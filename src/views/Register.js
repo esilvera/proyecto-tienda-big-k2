@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
 
 const Register = () => {
 
     const { store: { fname, lname, email, password, error, huboError }, actions: { registerSubmit, handleChange } } = useContext(Context);
+    /* const history = useHistory(); */
 
     return (
         <div id="fh5co-contact">
@@ -32,7 +35,7 @@ const Register = () => {
                             <div className="row form-group">
                                 <div className="col-md-6">
                                     {/* <label for="password">Password</label> */}
-                                    <input type="text" className="form-control" id="password" name="password" value={password} maxlength="20" placeholder="Password" onChange={handleChange} />
+                                    <input type="password" className="form-control" id="password" name="password" value={password} maxlength="20" placeholder="Password" onChange={handleChange} />
                                 </div>
                             </div>
                             {/* <div className="row form-group">
@@ -51,6 +54,8 @@ const Register = () => {
                             }
                             <div className="form-group">
                                 <button className="btn btn-primary" type="submit">Enviar</button>
+                                <Link to="/" className="btn btn-info" type="submit">Regresar</Link>
+                                {/* <button className="btn btn-info" onClick={() => history.goBack()} >Regresar</button> */}
                             </div>
                         </form>
                     </div>

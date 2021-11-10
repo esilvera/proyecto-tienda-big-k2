@@ -12,13 +12,24 @@ import NotFound from "./views/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import injectContext from './store/appContext';
-
+import Maintenance from "./views/Maintenance";
+import TableProducts from "./views/TableProducts";
+import AddProducts from "./views/AddProducts";
+import EditProducts from "./views/EditProducts";
+import TableServices from "./views/TableServices";
+import AddServices from "./views/addServices";
 
 const App = () => {
     return (
         <BrowserRouter>
             <Navbar />
             <Switch>
+                <Route exact path="/addservices" component={AddServices}></Route>
+                <Route exact path="/tableservices" component={TableServices}></Route>
+                <Route exact path="/editproducts" component={EditProducts}></Route>
+                <Route exact path="/addproducts" component={AddProducts}></Route>
+                <Route exact path="/tableproducts" component={TableProducts}></Route>
+                <Route exact path="/maintenance" component={Maintenance}></Route>
                 <Route exact path="/detail" component={Detail}></Route>
                 <Route exact path="/login" component={Login}></Route>
                 <Route exact path="/register" component={Register}></Route>

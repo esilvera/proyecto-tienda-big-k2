@@ -29,7 +29,7 @@ const Navbar = () => {
                                 <Link className="dropdown-toggle"
                                     data-toggle="dropdown"
                                     to="#">
-                                    Maintenance
+                                    Register
                                 </Link>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/register">Register</Link></li>

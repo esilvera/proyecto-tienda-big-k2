@@ -1,23 +1,35 @@
 import { findAllByLabelText } from "@testing-library/dom";
-//import { withRouter } from "react-router-dom";
 
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             urlProducts: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/products",
+            urlServices: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/services",
             urlRegister: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/register",
             urlLogin: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/login",
+            urlShopCart: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/shopping_card",
             products: null,
+            services: null,
             path: "images/",
             extension: ".jpg",
             list: [],
-            fname: "",
-            lname: "",
-            email: "",
-            password: "",
+            prod_name: "",
+            prod_desc: "",
+            prod_brand: "",
+            prod_price: 0,
+            prod_type_id: 0,
+            service_name: "",
+            service_desc: "",
+            service_icon: "",
+            user_fname: "",
+            user_lname: "",
+            user_email: "",
+            user_password: "",
             huboError: false,
             error: "",
+            user: null,
             exregvalidaname: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{1,20}$/,
+            exregvalidatelong: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{1,50}$/,
             exregvalidaemail: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
 
         },
@@ -38,8 +50,196 @@ const getState = ({ getStore, getActions, setStore }) => {
                         })
                     })
             },
+            addApiProducts: (evento) => {
+                evento.preventDefault()
+                const { prod_name, prod_desc, prod_brand, prod_price, prod_type_id, exregvalidatelong } = getStore();
+
+                if (prod_name === '' || !exregvalidatelong.test(prod_name)) {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque nombre del producto',
+                    })
+                    return
+                }
+                if (prod_brand === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque marca del producto',
+                    })
+                    return
+                }
+                if (prod_desc === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque descripción del producto',
+                    })
+                    return
+                }
+                if (prod_price === 0) {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque precio del producto',
+                    })
+                    return
+                }
+                if (prod_type_id === 0) {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor ID type del producto',
+                    })
+                    return
+                }
+                let register = {
+                    product_name: prod_name,
+                    product_desc: prod_desc,
+                    product_brand: prod_brand,
+                    product_price: prod_price,
+                    product_type_id: prod_type_id,
+
+                }
+                const { urlProducts } = getStore();
+                const { getApiProducts } = getActions();
+                fetch(urlProducts, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(register)
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const { msg } = data;
+                        if (msg !== undefined) {
+                            setStore({
+                                huboError: true,
+                                error: msg,
+                            })
+                            return
+                        }
+                        setStore({
+                            prod_name: "",
+                            prod_desc: "",
+                            prod_brand: "",
+                            prod_price: 0,
+                            prod_type_id: 0,
+                            huboError: false,
+                        })
+                        getApiProducts()
+                    })
+            },
+            deleteApiProducts: (evento) => {
+                console.log("products evento tiene: ", evento)
+                const { urlProducts } = getStore();
+                const { getApiProducts } = getActions();
+                const { product_id } = evento
+                console.log("variable tiene: ", evento.product_name)
+                console.log(urlProducts+"/"+product_id)
+                fetch(urlProducts + "/" + product_id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        getApiProducts()
+                    })
+            },
+            selectProduct: (evento) => {
+                setStore({
+                    selected: evento.product_name
+                })
+            },
+            getApiServices: () => {
+                const { urlServices } = getStore();
+                fetch(urlServices, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log("data services tiene:", data)
+                        setStore({
+                            services: data
+                        })
+                    })
+            },
+            addApiServices: (evento) => {
+                evento.preventDefault()
+                const { service_name, service_desc, service_icon, exregvalidatelong } = getStore();
+                console.log("evento en Services: ", evento.name)
+                if (service_name === '' || !exregvalidatelong.test(service_name)) {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque nombre del servicio',
+                    })
+                    return
+                }
+                if (service_desc === '') {
+                    setStore({
+                        huboError: true,
+                        error: 'Por Favor coloque descripción del servicio',
+                    })
+                    return
+                }
+                let register = {
+                    service_name: service_name,
+                    service_desc: service_desc,
+                    service_icon: service_icon,
+                }
+                const { urlServices } = getStore();
+                const { getApiServices } = getActions();
+                fetch(urlServices, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(register)
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const { msg } = data;
+                        if (msg !== undefined) {
+                            setStore({
+                                huboError: true,
+                                error: msg,
+                            })
+                            return
+                        }
+                        setStore({
+                            service_name: "",
+                            service_desc: "",
+                            huboError: false,
+                        })
+                        getApiServices()
+                    })
+            },
+            deleteApiServices: (evento) => {
+                console.log("service evento tiene: ", evento)
+                const { urlServices } = getStore();
+                const { getApiServices } = getActions();
+                const { service_id } = evento
+                console.log(urlServices+"/"+service_id)
+                fetch(urlServices + "/" + service_id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        getApiServices()
+                    })
+            },
+            shoppingCart: (evento) => {
+                const { list } = getStore();
+                console.log("name product tiene: ", evento);
+            },
             handleChange: evento => {
                 const { name, value } = evento.target;
+                console.log("name tiene: ", value)
                 setStore({
                     [name]: value
                 })
@@ -47,7 +247,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             registerSubmit: (evento) => {
                 evento.preventDefault()
                 const { fname, lname, email, password, exregvalidaname, exregvalidaemail } = getStore();
-                const { createUser } = getActions();
 
                 if (fname === '' || !exregvalidaname.test(fname)) {
                     setStore({
@@ -94,7 +293,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 })
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log("data tiene: ", data);
                         const { msg } = data;
                         if (msg !== undefined) {
                             setStore({
@@ -103,10 +301,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                             })
                             return
                         }
-                        //let { newRegister } = register;
-                        //newRegister.push(data);
-                        //register(newRegister);
-
                         setStore({
                             fname: "",
                             lname: "",
@@ -116,7 +310,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         })
                     })
             },
-            loginSubmit: (evento) => {
+            loginSubmit: (evento, history) => {
                 evento.preventDefault()
                 const { email, password, exregvalidaemail } = getStore();
                 if (email === '' || !exregvalidaemail.test(email)) {
@@ -147,9 +341,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 })
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log("data tiene: ", data);
-
-                        const { msg } = data;
+                        const { msg, user } = data;
                         if (msg !== undefined) {
                             setStore({
                                 huboError: true,
@@ -157,16 +349,56 @@ const getState = ({ getStore, getActions, setStore }) => {
                             })
                             return
                         }
-                        //let { newLogin } = register;
-                        //newLogin.push(data);
-                        //register(newLogin);
-
                         setStore({
                             email: "",
                             password: "",
                             huboError: false,
                         })
+                        if (user.user_role === false) {
+                            setStore({
+                                huboError: true,
+                                error: "Usuario NO AUTORIZADO"
+                            })
+                            return
+                        } else {
+                            setStore({
+                                user: user
+                            })
+                            sessionStorage.setItem('user', JSON.stringify(user))
+                            history.push('/maintenance')
+                        }
+
                     })
+            },
+            checkDataUser: () => {
+                if (sessionStorage.getItem('user')) {
+                    setStore({
+                        user: JSON.parse(sessionStorage.getItem('user'))
+                    })
+                }
+            },
+            addShoppingCart: (name) => {
+                const { list } = getStore();
+                console.log("name shopping cart tiene: ", name)
+                let newFavorite = {
+                    id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
+                    favorite: name
+                }
+                let newList = [...list];
+                newList.push(newFavorite);
+
+                setStore({
+                    list: newList,
+                })
+            },
+            deleteShopCart: (evento) => {
+                const { list } = getStore();
+                let newList = [...list];
+                newList.splice(evento, 1);
+                //setList(newList);
+                setStore({
+                    list: newList
+                })
             },
 
             /* postApiProducts: () => {
@@ -200,29 +432,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({
                         list: newList,
                     })
-            },
-            foundShoppingCard: (name, list) => {
-                console.log("name en fondFavorite tiene : ", name)
-                console.log("list tiene: ", list)
-                const found = list.find(element => element.favorite === name);
-                console.log(found)
-                if (!found) {
-                   return true;
-                }
-                return false;
-            },
-            deleteShoppingCard: (evento) => {
-                const { list } = getStore();
-                let newList = [...list];
-                newList.splice(evento, 1);
-                //setList(newList);
-                setStore({
-                    list: newList
-                })
-            }*/
+            },*/
         }
     }
 }
 
-//export default withRouter(getState);
 export default getState;
