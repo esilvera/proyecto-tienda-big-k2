@@ -51,9 +51,9 @@ const Navbar = () => {
                                 </div>
                             </li>
                             <li className="shopping-cart">
-                                <Link to="#" className="cart">
+                                <Link to="/shoppingcart" className="cart">
                                     <span>
-                                        <small>0</small>
+                                        {/* <small>0</small> */}
                                         <i className="icon-shopping-cart" />
                                     </span>
                                 </Link>

@@ -63,7 +63,7 @@ const Products = () => {
                                                             <Link to="#" className="icon">
                                                                 <i className="icon-shopping-cart"
                                                                     onClick={() => {
-                                                                        addShoppingCart(list, product_name)
+                                                                        addShoppingCart(product_name)
                                                                     }}
                                                                 />
                                                             </Link>

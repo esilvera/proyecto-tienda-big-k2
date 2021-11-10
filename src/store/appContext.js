@@ -18,6 +18,7 @@ const injectContext = PassedComponent => {
             state.actions.checkDataUser();
             state.actions.getApiProducts();
             state.actions.getApiServices();
+            state.actions.getProductsType();
         }, [])
 
         return (

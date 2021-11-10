@@ -10,6 +10,15 @@
 * 	Template Style 
 *
 * ======================================================= */
+.s-text {       /* Letra de favoritos */
+  font-size: smaller;
+}
+.bg-black {
+  background-color: #0000;
+}
+.bg-white {
+  background-color: white;
+}
 body {
   font-family: "Playfair Display", serif;
   font-weight: 400;

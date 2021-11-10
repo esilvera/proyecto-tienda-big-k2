@@ -19,12 +19,14 @@ import EditProducts from "./views/EditProducts";
 import TableServices from "./views/TableServices";
 import AddServices from "./views/AddServices";
 import EditServices from "./views/EditServices";
+import ShoppingCart from "./components/ShoppingCart";
 
 const App = () => {
     return (
         <BrowserRouter>
             <Navbar />
             <Switch>
+                <Route exact path="/shoppingcart" component={ShoppingCart}></Route>
                 <Route exact path="/editservices" component={EditServices}></Route>
                 <Route exact path="/addservices" component={AddServices}></Route>
                 <Route exact path="/tableservices" component={TableServices}></Route>

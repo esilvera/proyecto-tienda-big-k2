@@ -9,11 +9,14 @@ const getState = ({ getStore, getActions, setStore }) => {
             urlRegister: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/register",
             urlLogin: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/login",
             urlShopCart: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/shopping_card",
+            urlProdType: "https://5000-aquamarine-seahorse-y9ajx2ki.ws-us18.gitpod.io/api/products_type",
             products: null,
             services: null,
+            productsTypes: null,
             path: "images/",
             extension: ".jpg",
             list: [],
+            counter: 0,
             prod_id: "",
             prod_name: "",
             prod_desc: "",
@@ -37,16 +40,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         },
         actions: {
-            clearProducts: () => {
-                setStore({
-                    prod_name: "",
-                    prod_desc: "",
-                    prod_brand: "",
-                    prod_price: 0,
-                    prod_type_id: 0,
-                    huboError: false,
-                })
-            },
             getApiProducts: () => {
                 const { urlProducts } = getStore();
                 fetch(urlProducts, {
@@ -65,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             addApiProducts: (evento) => {
                 evento.preventDefault()
                 const { prod_name, prod_desc, prod_brand, prod_price, prod_type_id, exregvalidatelong } = getStore();
-
+                console.log("type id", prod_type_id)
                 if (prod_name === '' || !exregvalidatelong.test(prod_name)) {
                     setStore({
                         huboError: true,
@@ -94,10 +87,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                     return
                 }
-                if (prod_type_id === 0) {
+                if (prod_type_id === 0 || prod_type_id === '') {
                     setStore({
                         huboError: true,
-                        error: 'Por Favor ID type del producto',
+                        error: 'Por Favor seleccione tipo de producto',
                     })
                     return
                 }
@@ -128,7 +121,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                             })
                             return
                         }
-                        clearProducts();
+                        setStore({
+                            prod_name: "",
+                            prod_desc: "",
+                            prod_brand: "",
+                            prod_price: 0,
+                            prod_type_id: 0,
+                            huboError: false,
+                        })
                         getApiProducts();
                     })
             },
@@ -189,7 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 if (prod_type_id === 0 || prod_type_id === '') {
                     setStore({
                         huboError: true,
-                        error: 'Por Favor ID type del producto',
+                        error: 'Por Favor seleccione tipo de producto',
                     })
                     return
                 }
@@ -220,7 +220,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                             })
                             return
                         }
-                        clearProducts();
+                        setStore({
+                            prod_name: "",
+                            prod_desc: "",
+                            prod_brand: "",
+                            prod_price: 0,
+                            prod_type_id: 0,
+                            huboError: false,
+                        })
                         getApiProducts();
                     })
             },
@@ -531,9 +538,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                     })
                 }
             },
-            addShoppingCart: (list, name) => {
-                //const { list } = getStore();
-                console.log("list shopping card: ", list)
+            addShoppingCart: (name) => {
+                const { list } = getStore();
+                console.log("name shopping card: ", name)
                 let newFavorite = {
                     id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
                     favorite: name
@@ -554,6 +561,22 @@ const getState = ({ getStore, getActions, setStore }) => {
                     list: newList
                 })
             },
+            getProductsType: () => {
+                const { urlProdType } = getStore();
+                fetch(urlProdType, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'aplication/json',
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log("data product type tiene: ", data);
+                        setStore({
+                            productsTypes: data
+                        })
+                    })
+            }
         }
     }
 }
