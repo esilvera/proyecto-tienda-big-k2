@@ -8,61 +8,63 @@ const TableProducts = () => {
 
     return (
         <div className="row">
-            <div className="col-md-12 float-end">
+            <div className="col-md-10 right">
                 <Link to="/addproducts" className="btn btn-primary btn-sm">Add Products</Link>
-                <Link to="/maintenance" className="btn btn-info" type="submit">Regresar</Link>
+                <Link to="/maintenance" className="btn btn-info" type="submit">Back</Link>
             </div>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Product Type ID</th>
-                    </tr>
-                </thead>
-                {
-                    products === null ? (
-                        <div className="spinner-grow text-secondary" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    ) :
-                        /* !!products && */
-                        products.map((product, index) => {
-                            const { product_id, product_name, product_desc, product_brand, product_price, product_type_name } = product;
+            <div className="col-md-12 centrar">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Product Type</th>
+                        </tr>
+                    </thead>
+                    {
+                        products === null ? (
+                            <div className="spinner-grow text-secondary" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                        ) :
+                            /* !!products && */
+                            products.map((product, index) => {
+                                const { product_id, product_name, product_desc, product_brand, product_price, product_type_name } = product;
 
-                            return (
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">{index}</th>
-                                        <td>{product_name}</td>
-                                        <td>{product_desc}</td>
-                                        <td>{product_brand}</td>
-                                        <td>{product_price}</td>
-                                        <td>{product_type_name}</td>
-                                        <button>
-                                            <Link
-                                                onClick={() => {
-                                                    console.log("producto seleccionado: ", product_id)
-                                                    selectProduct(product_id)
-                                                }} to="/editproducts" className="icon-pencil">
-                                            </Link>
-                                        </button>
-                                        <button>
-                                            <i className="icon-trash"
-                                                onClick={() => {
-                                                    deleteApiProducts(product)
-                                                }}
-                                            />
-                                        </button>
-                                    </tr>
-                                </tbody>
-                            )
-                        })
-                }
-            </table>
+                                return (
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">{index}</th>
+                                            <td>{product_name}</td>
+                                            <td>{product_desc}</td>
+                                            <td>{product_brand}</td>
+                                            <td>{product_price}</td>
+                                            <td>{product_type_name}</td>
+                                            <button>
+                                                <Link
+                                                    onClick={() => {
+                                                        console.log("producto seleccionado: ", product_id)
+                                                        selectProduct(product_id)
+                                                    }} to="/editproducts" className="icon-pencil">
+                                                </Link>
+                                            </button>
+                                            <button>
+                                                <i className="icon-trash"
+                                                    onClick={() => {
+                                                        deleteApiProducts(product)
+                                                    }}
+                                                />
+                                            </button>
+                                        </tr>
+                                    </tbody>
+                                )
+                            })
+                    }
+                </table>
+            </div>
         </div >
     )
 }

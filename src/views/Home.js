@@ -150,10 +150,10 @@ const Home = () => {
                                         <div className="item">
                                             <div className="testimony-slide active text-center">
                                                 <figure>
-                                                    <img src="images/person1.jpg" alt="user" />
+                                                    <img src="images/Person1.jpg" alt="user" />
                                                 </figure>
                                                 <span>
-                                                    Jean Doe, via{" "}
+                                                    Sandra Silvera, via{" "}
                                                     <Link to="#" className="twitter">
                                                         Twitter
                                                     </Link>
@@ -171,10 +171,10 @@ const Home = () => {
                                         <div className="item">
                                             <div className="testimony-slide active text-center">
                                                 <figure>
-                                                    <img src="images/person2.jpg" alt="user" />
+                                                    <img src="images/Person2.jpg" alt="user" />
                                                 </figure>
                                                 <span>
-                                                    John Doe, via{" "}
+                                                    Dayanara Silvera, via{" "}
                                                     <Link to="#" className="twitter">
                                                         Twitter
                                                     </Link>
@@ -190,10 +190,10 @@ const Home = () => {
                                         <div className="item">
                                             <div className="testimony-slide active text-center">
                                                 <figure>
-                                                    <img src="images/person3.jpg" alt="user" />
+                                                    <img src="images/Person3.jpg" alt="user" />
                                                 </figure>
                                                 <span>
-                                                    John Doe, via{" "}
+                                                    Milena Sanchez, via{" "}
                                                     <Link to="#" className="twitter">
                                                         Twitter
                                                     </Link>

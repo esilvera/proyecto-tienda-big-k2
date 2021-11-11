@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../store/appContext';
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
                             <div className="row form-group">
                                 <div className="col-md-12">
                                     {/* <label for="email">Email</label> */}
-                                    <input type="text" className="form-control" id="email" name="email" value={email} placeholder="Your Email" onChange={handleChange} />
+                                    <input type="text" className="form-control" id="email" name="email" value={email} maxlength="50" placeholder="Your Email" onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="row form-group">
@@ -36,6 +36,7 @@ const Login = () => {
                             }
                             <div className="form-group">
                                 <button className="btn btn-primary" type="submit">Enviar</button>
+                                <Link to="/" className="btn btn-info" type="submit">Regresar</Link>
                             </div>
                         </form>
                     </div>

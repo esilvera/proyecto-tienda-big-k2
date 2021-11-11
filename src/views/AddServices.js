@@ -15,11 +15,11 @@ const AddServices = () => {
                         <form onSubmit={addApiServices} method='POST'>
                             <div className="row form-group">
                                 <div className="col-md-6">
-                                    <input type="text" className="form-control" id="service_name" name="service_name" value={service_name} maxlength="50" placeholder="Nombre del servicio" onChange={handleChange} />
+                                    <input type="text" className="form-control" id="service_name" name="service_name" value={service_name} maxlength="30" placeholder="Nombre del servicio" onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="row form-group">
-                                <div className="col-md-12">
+                                <div className="col-md-8">
                                     <input type="text" className="form-control" id="service_desc" name="service_desc" value={service_desc} maxlength="200" placeholder="Descripción del servicio" onChange={handleChange} />
                                 </div>
                             </div>
@@ -43,8 +43,8 @@ const AddServices = () => {
                                     )
                             }
                             <div className="form-group">
-                                <button className="btn btn-primary" type="submit">Añadir</button>
-                                <Link to="/tableServices" className="btn btn-info" type="submit">Regresar</Link>
+                                <button className="btn btn-primary" type="submit">Add</button>
+                                <Link to="/tableServices" className="btn btn-info" type="submit">Back</Link>
                             </div>
                         </form>
                     </div>

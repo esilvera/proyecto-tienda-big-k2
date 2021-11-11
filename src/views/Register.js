@@ -19,17 +19,17 @@ const Register = () => {
                             <div className="row form-group">
                                 <div className="col-md-6">
                                     {/* <label for="fname">First Name</label> */}
-                                    <input type="text" className="form-control" id="fname" name="fname" value={fname} maxlength="50" placeholder="First Name" onChange={handleChange} />
+                                    <input type="text" className="form-control" id="fname" name="fname" value={fname} maxlength="30" placeholder="First Name" onChange={handleChange} />
                                 </div>
                                 <div className="col-md-6">
                                     {/* <label for="lname">Last Name</label> */}
-                                    <input type="text" className="form-control" id="lname" name="lname" value={lname} maxlength="50" placeholder="Last Name" onChange={handleChange} />
+                                    <input type="text" className="form-control" id="lname" name="lname" value={lname} maxlength="30" placeholder="Last Name" onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="row form-group">
                                 <div className="col-md-12">
                                     {/* <label for="email">Email</label> */}
-                                    <input type="text" className="form-control" id="email" name="email" value={email} placeholder="Your Email" onChange={handleChange} />
+                                    <input type="text" className="form-control" id="email" name="email" value={email} maxlength="50" placeholder="Your Email" onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="row form-group">
